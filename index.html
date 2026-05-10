@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kb.ai - 有难题，都能解决</title>
+    <meta name="description" content="kb.ai三河本地AI服务商，提供文案撰写、海报设计、数据整理、PPT制作、短视频脚本等服务。首单体验价29.9元，一个痛点解决到满意。">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1a1a2e;
+            line-height: 1.6;
+            background: #fafafa;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #c9a96e;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 32px;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        .nav a:hover { opacity: 1; }
+        
+        /* Hero */
+        .hero {
+            position: relative;
+            color: #fff;
+            padding: 140px 0 100px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop') center/cover no-repeat;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.85);
+            z-index: 1;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 4px;
+        }
+        .hero .tagline {
+            font-size: 22px;
+            color: #c9a96e;
+            margin-bottom: 40px;
+        }
+        .hero .cta {
+            display: inline-block;
+            background: #c9a96e;
+            color: #1a1a2e;
+            padding: 16px 48px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .hero .cta:hover { background: #b8985d; }
+        .hero .price-note {
+            margin-top: 16px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+        
+        /* QR Code Section */
+        .qr-section {
+            background: #fff;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .qr-box {
+            display: inline-block;
+            padding: 24px 32px;
+            background: #fafafa;
+            border: 2px solid #c9a96e;
+        }
+        .qr-box img {
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 0 auto 12px;
+        }
+        .qr-box .qr-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .qr-box .qr-desc {
+            font-size: 14px;
+            color: #c9a96e;
+            font-weight: 600;
+        }
+        
+        /* Services */
+        .services {
+            padding: 80px 0;
+            background: #fff;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 60px;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: #fafafa;
+            border: 1px solid #eee;
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+            overflow: hidden;
+        }
+        .service-card:hover { 
+            border-color: #c9a96e; 
+            transform: translateY(-4px);
+        }
+        .service-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        .service-card .content {
+            padding: 24px;
+        }
+        .service-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .service-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: #1a1a2e;
+            color: #fff;
+        }
+        .testimonials .section-title {
+            color: #fff;
+        }
+        .testimonials .section-subtitle {
+            color: #888;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            padding: 32px;
+            border-left: 4px solid #c9a96e;
+        }
+        .testimonial-card .role {
+            font-size: 14px;
+            color: #c9a96e;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .testimonial-card .pain {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .testimonial-card .solution {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        .testimonial-card .quote {
+            font-size: 15px;
+            color: #c9a96e;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 16px;
+        }
+        
+        /* Process */
+        .process {
+            padding: 80px 0;
+            background: #fafafa;
+        }
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 32px;
+            background: #fff;
+            border: 1px solid #eee;
+        }
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: #c9a96e;
+            color: #1a1a2e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 0 auto 16px;
+        }
+        .step h4 { margin-bottom: 8px; }
+        .step p { color: #666; font-size: 14px; }
+        
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background: #fff;
+            text-align: center;
+        }
+        .hook-text {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .hook-text strong {
+            color: #c9a96e;
+            font-size: 20px;
+        }
+        .price-card {
+            max-width: 480px;
+            margin: 32px auto 0;
+            background: #1a1a2e;
+            color: #fff;
+            padding: 48px;
+        }
+        .price-card .price {
+            font-size: 64px;
+            font-weight: 700;
+            color: #c9a96e;
+        }
+        .price-card .unit {
+            font-size: 16px;
+            opacity: 0.6;
+            margin-bottom: 24px;
+        }
+        .price-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 24px 0;
+        }
+        .price-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+        }
+        .price-card .cta {
+            display: inline-block;
+            background: #c9a96e;
+            color: #1a1a2e;
+            padding: 16px 48px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 24px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 48px 0;
+            text-align: center;
+        }
+        footer .logo {
+            margin-bottom: 16px;
+            display: inline-block;
+            font-size: 24px;
+            font-weight: 700;
+            color: #c9a96e;
+            letter-spacing: 2px;
+        }
+        footer .brand-desc {
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        footer .brand-sub {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .service-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonial-grid { grid-template-columns: 1fr; }
+            .process-steps { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">kb.ai</div>
+            <nav class="nav">
+                <a href="#services">服务</a>
+                <a href="#cases">案例</a>
+                <a href="#process">流程</a>
+                <a href="#pricing">定价</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1>kb.ai</h1>
+            <p class="tagline">有难题，都能解决</p>
+            <a href="#contact" class="cta">立即体验</a>
+            <p class="price-note">首单体验价 29.9元，一个痛点解决到满意</p>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">服务项目</h2>
+            <p class="section-subtitle">文案、设计、技术，覆盖你的核心需求</p>
+            <div class="service-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=300&fit=crop" alt="文案撰写服务">
+                    <div class="content">
+                        <h3>文案撰写</h3>
+                        <p>朋友圈文案、产品描述、推广话术、短视频脚本</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" alt="设计制作服务">
+                    <div class="content">
+                        <h3>设计制作</h3>
+                        <p>海报、名片、菜单、PPT、宣传图</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="数据整理服务">
+                    <div class="content">
+                        <h3>数据整理</h3>
+                        <p>表格制作、数据分析、客户管理、进销存报表</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&h=300&fit=crop" alt="合同文档服务">
+                    <div class="content">
+                        <h3>合同文档</h3>
+                        <p>合同模板、协议起草、法律文本审核</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=300&fit=crop" alt="PPT制作服务">
+                    <div class="content">
+                        <h3>PPT制作</h3>
+                        <p>商业计划书、项目汇报、培训课件</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop" alt="短视频脚本服务">
+                    <div class="content">
+                        <h3>短视频脚本</h3>
+                        <p>抖音、快手脚本策划，从选题到分镜</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="cases">
+        <div class="container">
+            <h2 class="section-title">他们都在用</h2>
+            <p class="section-subtitle">真实案例，真实效果</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="role">饭店老板</div>
+                    <div class="pain">进销存太乱，不知道赚了多少</div>
+                    <div class="solution">AI自动生成每日盈亏分析表，进货、营业额、利润一目了然</div>
+                    <div class="quote">"29.9元帮我理清了一个月的账。"</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="role">本地小店</div>
+                    <div class="pain">想做抖音但不会写脚本</div>
+                    <div class="solution">AI每周产出7条朋友圈+2条短视频脚本，直接照着拍就行</div>
+                    <div class="quote">"一个月帮我多卖了80单团购。"</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="role">个体户</div>
+                    <div class="pain">客户资料全是手写的，容易丢</div>
+                    <div class="solution">AI整理成干净的电子表格，支持一键查询、分类筛选</div>
+                    <div class="quote">"再也不怕弄丢客户电话了。"</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="section-title">服务流程</h2>
+            <p class="section-subtitle">简单四步，难题变简单</p>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>描述痛点</h4>
+                    <p>告诉我你遇到什么难题，越具体越好</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>确认方案</h4>
+                    <p>我给出解决思路和报价，你确认</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>执行解决</h4>
+                    <p>AI+人工协作，高效完成</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>满意交付</h4>
+                    <p>修改到满意为止，同案不另收费</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">体验定价</h2>
+            <p class="section-subtitle">先试一单，满意再续</p>
+            <p class="hook-text">从<strong>一杯咖啡的钱</strong>开始</p>
+            <div class="price-card">
+                <div class="price">29.9</div>
+                <div class="unit">元 / 笔</div>
+                <ul>
+                    <li>一个痛点，解决到满意</li>
+                    <li>同案例不限制修改次数</li>
+                    <li>交付时间：1-3个工作日</li>
+                    <li>支持文案、设计、数据、文档</li>
+                </ul>
+                <a href="#contact" class="cta">立即下单</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container" style="text-align: center; padding: 60px 0;">
+            <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 32px;">联系我们</h2>
+            <div style="display: inline-block; padding: 32px 48px; background: #fafafa; border: 2px solid #c9a96e;">
+                <img src="微信二维码.jpg" alt="扫码添加微信" style="width: 140px; height: 140px; display: block; margin: 0 auto 16px; border: 4px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <p style="font-size: 18px; font-weight: 600; color: #1a1a2e; margin-bottom: 8px;">扫码添加，直接下单</p>
+                <p style="font-size: 14px; color: #666;">微信号：kbai_service</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo">kb.ai</div>
+            <div class="brand-desc">kb.ai · 三河本地AI服务商</div>
+            <div class="brand-sub">有难题，都能解决</div>
+        </div>
+    </footer>
+</body>
+</html>
